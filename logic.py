@@ -8,6 +8,7 @@ import cartopy.feature as cfeature
 class DB_Map:
     def __init__(self, database):
         self.database = database
+        self.fill_type = None
 
     def create_user_table(self):
         conn = sqlite3.connect(self.database)
@@ -49,7 +50,10 @@ class DB_Map:
             cursor.execute("SELECT lat, lng FROM cities WHERE city=?", (city_name,))
             return cursor.fetchone()
 
-    def create_graph(self, path, cities):
+    def set_fill(self, fill_type):
+        self.fill_type = fill_type
+
+    def create_graph(self, path, cities, color='red'):
         fig, ax = plt.subplots(figsize=(10, 5), subplot_kw={'projection': ccrs.PlateCarree()})
         ax.add_feature(cfeature.COASTLINE)
         ax.add_feature(cfeature.BORDERS, linestyle=':')
@@ -57,7 +61,7 @@ class DB_Map:
 
         for city in cities:
             name, lat, lon = city
-            ax.plot(lon, lat, marker='o', color='red', markersize=5, transform=ccrs.PlateCarree())
+            ax.plot(lon, lat, marker='o', color=color, markersize=5, transform=ccrs.PlateCarree())
             ax.text(lon + 1, lat, name, fontsize=8, transform=ccrs.PlateCarree())
 
         plt.savefig(path)
