@@ -1,0 +1,5 @@
+C:\Python311\Lib\site-packages\cartopy\io\__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/110m_physical/ne_110m_coastline.zip
+  warnings.warn(f'Downloading: {url}', DownloadWarning)
+C:\Python311\Lib\site-packages\cartopy\io\__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/110m_cultural/ne_110m_admin_0_boundary_lines_land.zip
+  warnings.warn(f'Downloading: {url}', DownloadWarning)
+^C
